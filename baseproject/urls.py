@@ -21,7 +21,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
-from django.views.i18n import javascript_catalog
+from django.views.i18n import JavaScriptCatalog
 from django.contrib.auth.views import logout
 from django.contrib.staticfiles.urls import static
 from django.conf import settings
@@ -30,10 +30,10 @@ from django.conf import settings
 
 from Base.views import index
 
-js_info_dict = {
+#js_info_dict = {
     #domain is default
-    'packages': ('Base',),
-}
+#    'packages': ('Base',),
+#}
 urlpatterns = [
 
     #url(r'^registro/', AddUsuario.as_view(), name='registro'),
@@ -43,5 +43,5 @@ urlpatterns += i18n_patterns(
     url(_(r'^admin/'), admin.site.urls),
     url(_(r'^'), index, name="index"),
     url(r'^i18n/',include('django.conf.urls.i18n')),
-    url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript-catalog')
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog')
 )
